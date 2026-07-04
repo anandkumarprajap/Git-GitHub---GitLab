@@ -3,7 +3,11 @@ GitLab is an all-in-one platform featuring built-in DevOps and continuous integr
 
 # Git Practice Screenshots
 
+---
+
 ## 1.png – Linux File System Practice (Without Git)
+
+![1.png](1.png)
 
 **Objective:**
 Understand the limitation of the Linux file system.
@@ -31,6 +35,8 @@ ls
 
 ## 2.png – File Modification Before Git Initialization
 
+![2.png](2.png)
+
 **Objective:**
 Understand that changes are not tracked before using Git.
 
@@ -55,6 +61,8 @@ ls -l
 
 ## 3.png – Initialize Git Repository
 
+![3.png](3.png)
+
 **Objective:**
 Create an empty Git repository.
 
@@ -74,6 +82,8 @@ ls -a
 ---
 
 ## 4.png – Check Git Status and Add Files
+
+![4.png](4.png)
 
 **Objective:**
 Move files from the Working Directory to the Staging Area.
@@ -99,6 +109,8 @@ git status
 
 ## 5.png – Configure Git and Create First Commit
 
+![5.png](5.png)
+
 **Objective:**
 Save the first version of the project.
 
@@ -122,6 +134,8 @@ git commit -m "umm hey simran"
 
 ## 6.png – Restore Deleted File
 
+![6.png](6.png)
+
 **Objective:**
 Recover a deleted tracked file.
 
@@ -143,6 +157,8 @@ ls
 ---
 
 ## 7.png – Stage and Unstage a File
+
+![7.png](7.png)
 
 **Objective:**
 Learn how to add and remove files from the Staging Area.
@@ -167,6 +183,8 @@ git status
 
 ## 8.png – Commit the New File
 
+![8.png](8.png)
+
 **Objective:**
 Save the staged file into Git history.
 
@@ -189,7 +207,7 @@ git status
 
 # Git Workflow Diagram
 
-```
+```text
 Working Directory
        │
        │  git add
@@ -213,7 +231,7 @@ Working Directory
 
 # File State Diagram
 
-```
+```text
 Create File
      │
      ▼
@@ -226,6 +244,7 @@ Staged
      │ git commit
      ▼
 Tracked (Git Repository)
+```
 ```
 # Table of Contents
 
