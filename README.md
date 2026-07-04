@@ -1,6 +1,232 @@
 # Git-GitHub-&-GitLab
 GitLab is an all-in-one platform featuring built-in DevOps and continuous integration (CI/CD), highly favored by enterprises for security and private hosting
 
+# Git Practice Screenshots
+
+## 1.png – Linux File System Practice (Without Git)
+
+**Objective:**
+Understand the limitation of the Linux file system.
+
+### Commands Performed
+
+```bash
+touch hello.txt
+vim hello.txt
+cat hello.txt
+ls -l hello.txt
+rm hello.txt
+ls
+```
+
+### Observation
+
+- Created a file.
+- Modified the file.
+- Deleted the file.
+- Linux file system cannot track history.
+- Deleted file cannot be restored easily.
+
+---
+
+## 2.png – File Modification Before Git Initialization
+
+**Objective:**
+Understand that changes are not tracked before using Git.
+
+### Commands Performed
+
+```bash
+mkdir devops
+cd devops
+vim raj-love-latter
+cat raj-love-latter
+ls -l
+```
+
+### Observation
+
+- Created a new file.
+- Modified its content.
+- Linux only stores the latest version.
+- No version history exists.
+
+---
+
+## 3.png – Initialize Git Repository
+
+**Objective:**
+Create an empty Git repository.
+
+### Commands Performed
+
+```bash
+git init
+ls -a
+```
+
+### Observation
+
+- Git created a hidden `.git` directory.
+- Current folder is now a Git repository.
+- Git can now track file changes.
+
+---
+
+## 4.png – Check Git Status and Add Files
+
+**Objective:**
+Move files from the Working Directory to the Staging Area.
+
+### Commands Performed
+
+```bash
+touch raj.txt
+touch simran.txt
+git status
+git add raj.txt
+git add simran.txt
+git status
+```
+
+### Observation
+
+- Files were initially **Untracked**.
+- After `git add`, files moved to the **Staging Area**.
+- Git status changed to **Changes to be committed**.
+
+---
+
+## 5.png – Configure Git and Create First Commit
+
+**Objective:**
+Save the first version of the project.
+
+### Commands Performed
+
+```bash
+git config --global user.name "Anand Kumar"
+git config --global user.email "anandkumar7738@gmail.com"
+
+git commit -m "umm hey simran"
+```
+
+### Observation
+
+- Configured Git username and email.
+- Created the first commit.
+- Git permanently stored the files.
+- Output displayed `create mode 100644`.
+
+---
+
+## 6.png – Restore Deleted File
+
+**Objective:**
+Recover a deleted tracked file.
+
+### Commands Performed
+
+```bash
+rm simran.txt
+git status
+git restore simran.txt
+ls
+```
+
+### Observation
+
+- Deleted a tracked file.
+- Git detected the deletion.
+- `git restore` recovered the file successfully.
+
+---
+
+## 7.png – Stage and Unstage a File
+
+**Objective:**
+Learn how to add and remove files from the Staging Area.
+
+### Commands Performed
+
+```bash
+git add raj-love-latter
+git status
+
+git restore --staged raj-love-latter
+git status
+```
+
+### Observation
+
+- File moved to the Staging Area.
+- `git restore --staged` removed it from staging.
+- File remained in the Working Directory.
+
+---
+
+## 8.png – Commit the New File
+
+**Objective:**
+Save the staged file into Git history.
+
+### Commands Performed
+
+```bash
+git add raj-love-latter
+git commit -m "Added love letter"
+
+git status
+```
+
+### Observation
+
+- New file committed successfully.
+- Working tree became clean.
+- Git repository now contains multiple commits.
+
+---
+
+# Git Workflow Diagram
+
+```
+Working Directory
+       │
+       │  git add
+       ▼
++------------------+
+|   Staging Area   |
++------------------+
+       │
+       │  git commit
+       ▼
++------------------+
+|  Local Git Repo  |
++------------------+
+       │
+       │  git push
+       ▼
+      GitHub
+```
+
+---
+
+# File State Diagram
+
+```
+Create File
+     │
+     ▼
+Untracked
+     │
+     │ git add
+     ▼
+Staged
+     │
+     │ git commit
+     ▼
+Tracked (Git Repository)
+```
 # Table of Contents
 
 1. What is Git?
