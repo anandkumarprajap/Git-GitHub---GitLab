@@ -230,12 +230,7 @@ Copy the complete key.
 
 ## Screenshot
 
-![SSH Key Generation](6.png)
-
 - ssh-keygen
-
-![Public SSH Key](7.png)
-
 - id_rsa.pub
 
 ---
@@ -269,14 +264,18 @@ Authentication Key
 
 ## Screenshot
 
+![SSH Key Generation](6.png)
 
-![SSH Key Added](8.png)
 
 - SSH key added successfully
 
 ---
 
 # 7. Create GitHub Repository
+
+![Public SSH Key](7.png)
+
+![SSH Key Added](8.png)
 
 Create Repository
 
