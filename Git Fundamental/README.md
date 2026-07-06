@@ -1,4 +1,306 @@
+# SSH Key, Clone, Clone vs Fork (Git & GitHub Notes)
+![15.png](15.png)
 
+![16.png](16.png)
+
+![17.png](17.png)
+
+## Objective
+
+Learn how to:
+
+- Generate an SSH key
+- Add the SSH key to GitHub
+- Clone a GitHub repository
+- Understand the difference between Clone and Fork
+- Know when to use Clone and Fork
+
+---
+
+# 1. What is an SSH Key?
+
+SSH (Secure Shell) is a secure authentication method that allows your computer to communicate with GitHub without entering your username and password every time.
+
+GitHub identifies your computer using a pair of cryptographic keys.
+
+- Private Key → Stored on your computer (Never share it)
+- Public Key → Added to your GitHub account
+
+---
+
+# 2. Generate an SSH Key
+
+Check whether SSH is installed:
+
+```bash
+ssh
+```
+
+Generate a new SSH key:
+
+```bash
+ssh-keygen
+```
+
+Press **Enter** to accept the default location.
+
+Example:
+
+```
+C:\Users\david\.ssh\id_ed25519
+```
+
+If a key already exists:
+
+```
+Overwrite (y/n)?
+```
+
+Choose:
+
+```
+y
+```
+
+(Optional) Enter a passphrase or press Enter to skip.
+
+---
+
+# 3. View Generated Keys
+
+Move to the SSH directory:
+
+```bash
+cd ~/.ssh
+```
+
+Windows PowerShell:
+
+```powershell
+cd $HOME\.ssh
+```
+
+List files:
+
+```bash
+ls
+```
+
+Output:
+
+```
+id_ed25519
+id_ed25519.pub
+```
+
+- id_ed25519 → Private Key
+- id_ed25519.pub → Public Key
+
+---
+
+# 4. Display the Public Key
+
+```bash
+cat id_ed25519.pub
+```
+
+Copy the entire output.
+
+Example:
+
+```
+ssh-ed25519 AAAAC3Nza... david@LAPTOP
+```
+
+---
+
+# 5. Add SSH Key to GitHub
+
+1. Login to GitHub.
+2. Go to **Settings**.
+3. Open **SSH and GPG keys**.
+4. Click **New SSH key**.
+5. Enter a title.
+6. Paste the copied public key.
+7. Click **Add SSH key**.
+
+---
+
+# 6. Test the SSH Connection
+
+```bash
+ssh -T git@github.com
+```
+
+Expected output:
+
+```
+Hi username! You've successfully authenticated.
+```
+
+---
+
+# 7. Clone a Repository
+
+Clone using SSH:
+
+```bash
+git clone git@github.com:username/repository.git
+```
+
+Example:
+
+```bash
+git clone git@github.com:anandkumarprajap/Git-GitHub---GitLab.git
+```
+
+Move into the repository:
+
+```bash
+cd Git-GitHub---GitLab
+```
+
+Check files:
+
+```bash
+ls
+```
+
+---
+
+# What is Clone?
+
+Clone creates a complete copy of an existing GitHub repository on your local computer.
+
+It downloads:
+
+- Files
+- Branches
+- Commit history
+- Git configuration
+
+---
+
+# Clone Uses
+
+- Download an existing project
+- Contribute to a repository
+- Work locally
+- Create new branches
+- Push changes back to GitHub
+
+---
+
+# What is Fork?
+
+A Fork creates your own copy of someone else's repository on your GitHub account.
+
+The forked repository is independent of the original repository.
+
+---
+
+# Fork Uses
+
+- Contribute to open-source projects
+- Experiment without affecting the original project
+- Maintain your own version
+- Submit Pull Requests
+
+---
+
+# Clone vs Fork
+
+| Clone | Fork |
+|-------|------|
+| Local copy | GitHub copy |
+| Stored on your computer | Stored in your GitHub account |
+| Uses `git clone` | Uses the GitHub **Fork** button |
+| Can push if you have permission | You always have permission on your fork |
+| Best for repositories you own or collaborate on | Best for contributing to open-source projects |
+
+---
+
+# Workflow
+
+## Clone Workflow
+
+```
+GitHub Repository
+        │
+        ▼
+git clone
+        │
+        ▼
+Local Computer
+        │
+        ▼
+Edit → Commit → Push
+```
+
+## Fork Workflow
+
+```
+Original Repository
+        │
+        ▼
+Fork
+        │
+        ▼
+Your GitHub Repository
+        │
+        ▼
+git clone
+        │
+        ▼
+Local Computer
+        │
+        ▼
+Commit → Push
+        │
+        ▼
+Create Pull Request
+```
+
+---
+
+# Important Commands
+
+```bash
+ssh-keygen
+```
+
+```bash
+ssh -T git@github.com
+```
+
+```bash
+cat ~/.ssh/id_ed25519.pub
+```
+
+```bash
+git clone <repository-url>
+```
+
+```bash
+git remote -v
+```
+
+```bash
+git status
+```
+
+---
+
+# Observation
+
+- Generated an SSH key pair.
+- Added the public key to GitHub.
+- Authenticated GitHub using SSH.
+- Cloned a repository successfully.
+- Learned the difference between Clone and Fork.
+- Understood when to use Clone and Fork in real-world development.
+......................................................................................................................................................
+......................................................................................................................................................
 # Git & GitHub Hands-on Notes
 
 ## Objective
