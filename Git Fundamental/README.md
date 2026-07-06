@@ -1,84 +1,3 @@
-## Screenshot
-
-### Creating shell-scripts directory, creating hello.sh and running the script
-
-![Creating shell script](1.png)
-
-### File permissions and script execution
-
-![File permissions](2.png)
-
----
-
-## Screenshot
-
-### Git initialization and Git configuration
-
-![Git Init](3.png)
-
-### git add and git status
-
-![Git Add](4.png)
-
-### Git Commit
-
-![Git Commit](5.png)
-
----
-
-## Screenshot
-
-### SSH Key Generation
-
-![SSH Key Generation](6.png)
-
-### Public SSH Key
-
-![Public SSH Key](7.png)
-
----
-
-## Screenshot
-
-### SSH Key Added to GitHub
-
-![SSH Key Added](8.png)
-
----
-
-## Screenshot
-
-### Git Remote Configuration
-
-![Git Remote](9.png)
-
----
-
-## Screenshot
-
-### Git Push
-
-![Git Push](10.png)
-
----
-
-## Screenshot
-
-### Repository Before Pull
-
-![Repository Before Pull](11.png)
-
-### Git Pull
-
-![Git Pull](12.png)
-
-### variable.sh Downloaded
-
-![Variable Downloaded](13.png)
-
-### Contents of variable.sh
-
-![Variable Script](14.png)
 
 # Git & GitHub Hands-on Notes
 
@@ -152,12 +71,12 @@ hello.dosto, Anand
 
 ## Screenshot
 
-**1.png**
+![Creating shell script](1.png)
+![File permissions](2.png)
+
 - Creating shell-scripts directory
 - Creating hello.sh
 - Running the shell script
-
-**2.png**
 - File permissions
 - Script execution
 
@@ -233,7 +152,7 @@ git status
 
 ## Screenshot
 
-**3.png**
+![Git Init](3.png)
 
 - git init
 - Git configuration
@@ -270,12 +189,12 @@ git status
 
 ## Screenshot
 
-**4.png**
+![Git Add](4.png)
 
 - git add
 - git status
 
-**5.png**
+![Git Commit](5.png)
 
 - git commit
 
@@ -311,11 +230,11 @@ Copy the complete key.
 
 ## Screenshot
 
-**6.png**
+![SSH Key Generation](6.png)
 
 - ssh-keygen
 
-**7.png**
+![Public SSH Key](7.png)
 
 - id_rsa.pub
 
@@ -350,7 +269,8 @@ Authentication Key
 
 ## Screenshot
 
-**8.png**
+
+![SSH Key Added](8.png)
 
 - SSH key added successfully
 
@@ -404,7 +324,7 @@ master
 
 ## Screenshot
 
-**9.png**
+![Git Remote](9.png)
 
 - git remote -v
 - git branch
@@ -433,7 +353,7 @@ Git uploads all commits to GitHub.
 
 ## Screenshot
 
-**10.png**
+![Git Push](10.png)
 
 - git push
 - Push successful
@@ -535,19 +455,19 @@ Location "Pune"
 
 ## Screenshot
 
-**11.png**
+![Repository Before Pull](11.png)
 
 - Repository before pull
 
-**12.png**
+![Git Pull](12.png)
 
 - git pull
 
-**13.png**
+![Variable Downloaded](13.png)
 
 - variable.sh downloaded
 
-**14.png**
+![Variable Script](14.png)
 
 - cat variable.sh
 
