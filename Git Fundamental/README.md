@@ -1,52 +1,84 @@
 ## Screenshot
 
+### Creating shell-scripts directory, creating hello.sh and running the script
+
+![Creating shell script](1.png)
+
+### File permissions and script execution
+
+![File permissions](2.png)
+
+---
+
+## Screenshot
+
 ### Git initialization and Git configuration
 
-![Git Init](images/3.png)
+![Git Init](3.png)
 
 ### git add and git status
 
-![Git Add](images/4.png)
+![Git Add](4.png)
 
 ### Git Commit
 
-![Git Commit](images/5.png)
+![Git Commit](5.png)
+
+---
+
+## Screenshot
 
 ### SSH Key Generation
 
-![SSH Key Generation](images/6.png)
+![SSH Key Generation](6.png)
 
 ### Public SSH Key
 
-![Public SSH Key](images/7.png)
+![Public SSH Key](7.png)
+
+---
+
+## Screenshot
 
 ### SSH Key Added to GitHub
 
-![SSH Key Added](images/8.png)
+![SSH Key Added](8.png)
 
-### Remote Repository Configuration
+---
 
-![Git Remote](images/9.png)
+## Screenshot
 
-### Push to GitHub
+### Git Remote Configuration
 
-![Git Push](images/10.png)
+![Git Remote](9.png)
+
+---
+
+## Screenshot
+
+### Git Push
+
+![Git Push](10.png)
+
+---
+
+## Screenshot
 
 ### Repository Before Pull
 
-![Before Pull](images/11.png)
+![Repository Before Pull](11.png)
 
 ### Git Pull
 
-![Git Pull](images/12.png)
+![Git Pull](12.png)
 
 ### variable.sh Downloaded
 
-![Downloaded File](images/13.png)
+![Variable Downloaded](13.png)
 
 ### Contents of variable.sh
 
-![Variable Script](images/14.png)
+![Variable Script](14.png)
 
 # Git & GitHub Hands-on Notes
 
