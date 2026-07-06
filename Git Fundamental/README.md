@@ -1,3 +1,53 @@
+## Screenshot
+
+### Git initialization and Git configuration
+
+![Git Init](images/3.png)
+
+### git add and git status
+
+![Git Add](images/4.png)
+
+### Git Commit
+
+![Git Commit](images/5.png)
+
+### SSH Key Generation
+
+![SSH Key Generation](images/6.png)
+
+### Public SSH Key
+
+![Public SSH Key](images/7.png)
+
+### SSH Key Added to GitHub
+
+![SSH Key Added](images/8.png)
+
+### Remote Repository Configuration
+
+![Git Remote](images/9.png)
+
+### Push to GitHub
+
+![Git Push](images/10.png)
+
+### Repository Before Pull
+
+![Before Pull](images/11.png)
+
+### Git Pull
+
+![Git Pull](images/12.png)
+
+### variable.sh Downloaded
+
+![Downloaded File](images/13.png)
+
+### Contents of variable.sh
+
+![Variable Script](images/14.png)
+
 # Git & GitHub Hands-on Notes
 
 ## Objective
