@@ -1,251 +1,36 @@
-┌──────────────────────────────────────────────────────────────────────────────────────────────┐
-│                    GIT HISTORY (YOUR REPOSITORY - DEVBOARD)                                  │
-└──────────────────────────────────────────────────────────────────────────────────────────────┘
+![Image 1](1.png)
+![Image 2](2.png)
+![Image 3](3.png)
+![Image 4](4.png)
+![Image 5](5.png)
+![Image 6](6.png)
+![Image 7](7.png)
+![Image 8](8.png)
+![Image 9](9.png)
+![Image 10](10.png)
+![Image 11](11.png)
+![Image 12](12.png)
+![Image 13](13.png)
+![Image 14](14.png)
+![Image 15](15.png)
+![Image 16](16.png)
+![Image 17](17.png)
+![Image 18](18.png)
+![Image 19](19.png)
+![Image 20](20.png)
+![Image 21](21.png)
+![Image 22](22.png)
+![Image 23](23.png)
+![Image 24](24.png)
+![Image 25](25.png)
+![Image 26](26.png)
+![Image 27](27.png)
+![Image 28](28.png)
+![Image 29](29.png)
+![Image 30](30.png)
+![Image 31](31.png)
+![Image 32](32.png)
+![Image 33](33.png)
+![Image 34](34.png)
 
 
-                                 LOCAL REPOSITORY HISTORY
-
-                         MASTER BRANCH
-                               │
-                               ▼
-(1) 029ee6d
-┌─────────────────────────────┐
-│ Initial Commit              │
-└──────────────┬──────────────┘
-               │
-               │
-               ├─────────────────────────────────────► DEVOPS BRANCH CREATED
-               │                                       │
-               │                                       ▼
-               │                         (2) 814fa3e
-               │                    ┌──────────────────────┐
-               │                    │ Added nginx script   │
-               │                    └──────────┬───────────┘
-               │                               │
-               │                               ▼
-               │                         (3) 12ed3dd
-               │                    ┌──────────────────────┐
-               │                    │ Deleted hello.html~  │
-               │                    └──────────┬───────────┘
-               │                               │
-               │                               ▼
-               │                         (4) 5bfa3b8
-               │                    ┌──────────────────────┐
-               │                    │ Added test.py        │
-               │                    └──────────┬───────────┘
-               │                               │
-               │                               ▼
-               │                         (5) 4d2721f
-               │                    ┌──────────────────────┐
-               │                    │ Added changes test.py│
-               │                    └──────────┬───────────┘
-               │                               │
-               │                               │
-               │                               └─────────────┐
-               │                                             │
-               ▼                                             ▼
-(6) Merge DevOps → Master (Fast Forward)
-┌──────────────────────────────────────────────┐
-│ Master now contains nginx + delete + test.py │
-└──────────────────────┬───────────────────────┘
-                       │
-                       ▼
-(7) 7e885a6
-┌──────────────────────────────────────────────┐
-│ GitHub Pull Request #1 merged                │
-└──────────────────────┬───────────────────────┘
-                       │
-                       ▼
-(8) ec91bfe
-┌──────────────────────────────────────────────┐
-│ Added new-master-file.txt                    │
-└──────────────────────┬───────────────────────┘
-                       │
-                       ▼
-(9) Rebase TEST on MASTER
-┌──────────────────────────────────────────────┐
-│ Test branch replayed on latest master        │
-└──────────────────────┬───────────────────────┘
-                       │
-                       ▼
-(10) GitHub Squash Merge
-┌──────────────────────────────────────────────┐
-│ PR #2 (test → master)                        │
-│ file1 + file2 + file3 → ONE commit           │
-└──────────────────────────────────────────────┘
-
-
-
-──────────────────────────────────────────────────────────────────────────────────────────────
-
-TEST BRANCH
-
-                From commit 5bfa3b8
-
-                        │
-                        ▼
-                bd5f875
-         ┌────────────────────┐
-         │ Added new-file.txt │
-         └─────────┬──────────┘
-                   │
-                   ▼
-                fa680dc
-         ┌────────────────────┐
-         │ Added file1.txt    │
-         └─────────┬──────────┘
-                   │
-                   ▼
-                b39af7e
-         ┌────────────────────┐
-         │ Added file2.txt    │
-         └─────────┬──────────┘
-                   │
-                   ▼
-                1cd38ea
-         ┌────────────────────┐
-         │ Added file3.txt    │
-         └─────────┬──────────┘
-                   │
-                   ▼
-          Push → Pull Request
-                   │
-                   ▼
-          GitHub Squash Merge
-                   │
-                   ▼
-      All commits become ONE commit on MASTER
-
-
-
-──────────────────────────────────────────────────────────────────────────────────────────────
-
-MERGE
-
-master                     devops
-
-A──B──C                     D──E
-      \                    /
-       └──── Merge ───────┘
-
-                │
-                ▼
-
-A──B──C──────────────M
-
-✔ History preserved
-✔ Merge commit may be created
-
-
-
-FAST-FORWARD MERGE
-
-master
-
-A──B
-
-devops
-
-A──B──C──D
-
-git merge devops
-
-Result
-
-A──B──C──D
-
-✔ No merge commit
-✔ Pointer simply moves forward
-
-
-
-REBASE
-
-master
-
-A──B──C
-
-test
-
-     D──E
-
-git rebase master
-
-Result
-
-A──B──C──D'──E'
-
-✔ Clean linear history
-✔ Commit IDs change
-✔ History rewritten
-
-
-
-SQUASH MERGE
-
-feature
-
-A──B──C──D
-
-          │
-          ▼
-
-master
-
-X──────────S
-
-S = One single commit
-
-✔ Clean Git history
-✔ Multiple commits become one
-✔ Individual commit history is lost
-
-
-
-COMMIT vs BRANCH
-
-COMMIT
-──────
-A snapshot of your project at a point in time.
-
-Project
-   │
-Commit-1
-   │
-Commit-2
-   │
-Commit-3
-
-BRANCH
-──────
-A movable pointer to commits.
-
-master ─────────► C3
-
-devops ─────────► C5
-
-test ───────────► C8
-
-
-
-REAL LIFE ANALOGY
-
-Commit  = Save button in a game 🎮
-
-Branch  = Alternate storyline
-
-Merge   = Combine two storylines
-
-Rebase  = Rewrite storyline to make it look continuous
-
-Squash  = Compress many saves into one final save
-
-Clone   = Download complete repository
-
-Fetch   = Check remote updates only
-
-Pull    = Fetch + Merge/Rebase updates
-
-Checkout = Switch branch
-
-Checkout -b = Create new branch + Switch immediately
