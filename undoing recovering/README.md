@@ -10,164 +10,353 @@
 ![Image 10](10.png)
 ![Image 11](11.png)
 
-# Git Undoing, Revert & Blame — Simple Notes
+# Git Undoing, Revert & Blame
 
-## 1. `git blame`
+These commands are used to inspect changes and undo or move Git history.
 
-### Definition
-`git blame` shows **who last changed each line of a file**, along with the commit ID, author, date, and line number.
+---
 
-### Use
-- Find which commit changed a particular line.
-- Find the author of a line.
-- Debug or investigate when a change was introduced.
+# 1. `git blame`
 
-### Command
+## Definition
+
+`git blame` shows **who last changed each line of a file**.
+
+It displays:
+
+* Commit ID
+* Author
+* Date
+* Line number
+* Line content
+
+## Why Use?
+
+Use `git blame` when you want to:
+
+* Find who changed a particular line.
+* Find which commit introduced a change.
+* Investigate or debug a change.
+
+## Command
+
+```bash
+git blame <file-name>
+```
+
+## Example
+
 ```bash
 git blame keys.txt
 ```
 
-### Example
+Example output:
+
 ```text
 c9c9faa (Ubuntu 2026-07-12 ...) 1 AWS_SECRET_ACCESS_KEY = ...
 ```
 
-Here `c9c9faa` is the commit that introduced/last changed that line.
+## Result
+
+Git tells you that commit `c9c9faa` was responsible for the current version of that line.
 
 ---
 
-## 2. `git revert`
+# 2. `git revert`
 
-### Definition
-`git revert` **undoes the changes of a specific commit by creating a new commit**.
+## Definition
 
-It does NOT delete the original commit from history.
+`git revert` **undoes the changes made by a specific commit by creating a new commit**.
 
-### Use
-Use `revert` when the commit is already shared/pushed and you want a safe undo.
+The original commit remains in Git history.
 
-### Command
+## Why Use?
+
+Use `git revert` when:
+
+* A commit has already been pushed to GitHub.
+* You want to safely undo a commit.
+* You do not want to rewrite existing Git history.
+
+## Command
+
+```bash
+git revert <commit-id>
+```
+
+## Example
+
 ```bash
 git revert c9c9faa
 ```
 
-This creates a new commit similar to:
+If `c9c9faa` added `keys.txt`, Git creates a new commit that removes it.
+
+Example:
+
 ```text
-Revert "added keys"
+c9c9faa  added keys
+     ↓
+1f7fd44  Revert "added keys"
+```
+
+## Result
+
+The original commit stays in history, but its changes are reversed.
+
+```bash
+git log --oneline
+```
+
+Example:
+
+```text
+1f7fd44 Revert "added keys"
+c9c9faa added keys
 ```
 
 ### Important
-```text
-Original commit     → remains in history
-Revert commit       → reverses its changes
-```
+
+**Revert does NOT delete the original commit.**
 
 ---
 
-## 3. `git reset`
+# 3. `git reset`
 
-### Definition
-`git reset` moves the current branch `HEAD` to another commit.
+## Definition
 
-It can also change what happens to the staging area and working directory depending on the option.
+`git reset` moves the current branch's `HEAD` to another commit.
 
-### General command
+Depending on the option, it can also:
+
+* Keep changes staged.
+* Unstage changes.
+* Delete local changes.
+
+## Why Use?
+
+Use `git reset` when:
+
+* You want to move the branch back to an earlier commit.
+* You want to combine or remove local commits.
+* You want to change the staging state.
+* You are working on local/unpublished history.
+
+## Basic Command
+
 ```bash
 git reset <commit-id>
 ```
 
-Example:
+## Example
+
 ```bash
-git reset c9c9faa
+git reset 230f211
 ```
+
+This moves `HEAD` to commit `230f211`.
 
 ---
 
 # 4. `git reset 230f211` — Mixed Reset
 
-### Command
+## Definition
+
+`git reset <commit>` without an option performs a **mixed reset** by default.
+
+It moves `HEAD` and resets the staging area, but keeps the file changes in the working directory.
+
+## Why Use?
+
+Use it when:
+
+* You want to remove commits.
+* You want to keep the changes.
+* You want the changes to become unstaged so you can modify or select what to commit.
+
+## Command
+
 ```bash
 git reset 230f211
 ```
 
-This is the default **mixed** reset.
+Same as:
 
-### What it does
-- Moves `HEAD` to `230f211`.
-- Resets the staging area.
-- Keeps working-directory changes.
-- Changes become **unstaged**.
-
-### Example
-```text
-Before:
-A → B → C → D (HEAD)
-
-git reset B
-
-After:
-A → B (HEAD)
-    C and D changes remain in working directory
+```bash
+git reset 230f211 --mixed
 ```
 
-### Check
+## Example
+
+Before:
+
+```text
+A → B → C → D
+          ↑
+         HEAD
+```
+
+Run:
+
+```bash
+git reset 230f211
+```
+
+After:
+
+```text
+A → B
+    ↑
+   HEAD
+```
+
+The changes from the later commits remain in your working directory.
+
+## Result
+
 ```bash
 git status
+```
+
+May show:
+
+```text
+Changes not staged for commit:
+    modified: test.py
 ```
 
 ---
 
 # 5. `git reset 230f211 --soft`
 
-### Command
+## Definition
+
+A soft reset moves `HEAD` to the specified commit but **keeps the changes staged**.
+
+## Why Use?
+
+Use it when:
+
+* You want to remove one or more commits.
+* You want to combine commits.
+* You want to create a new commit from the existing changes.
+* You want to edit the commit history while keeping changes ready to commit.
+
+## Command
+
 ```bash
 git reset 230f211 --soft
 ```
 
-### What it does
-- Moves `HEAD` to `230f211`.
-- Keeps changes **staged**.
-- Working files are kept unchanged.
+## Example
 
-### Use
-Useful when you want to remove/recombine commits but keep their changes ready for a new commit.
+Before:
 
-### Check
+```text
+A → B → C → D
+          ↑
+         HEAD
+```
+
+Run:
+
+```bash
+git reset 230f211 --soft
+```
+
+After:
+
+```text
+A → B
+    ↑
+   HEAD
+```
+
+The changes from `C` and `D` remain **staged**.
+
+## Result
+
 ```bash
 git status
 ```
 
-You will normally see:
+Example:
+
 ```text
 Changes to be committed:
     modified: test.py
+```
+
+You can then create a new commit:
+
+```bash
+git commit -m "Combined changes"
 ```
 
 ---
 
 # 6. `git reset 230f211 --mixed`
 
-### Command
+## Definition
+
+A mixed reset moves `HEAD` and resets the staging area, while keeping the changes in the working directory.
+
+It is the **default reset mode**.
+
+## Why Use?
+
+Use it when:
+
+* You want to remove commits.
+* You want to keep the file changes.
+* You want to review or modify the changes before committing again.
+
+## Command
+
 ```bash
 git reset 230f211 --mixed
 ```
 
-### What it does
-- Moves `HEAD` to `230f211`.
-- Unstages changes.
-- Keeps changes in the working directory.
+Or simply:
 
-This is the default behavior of:
 ```bash
 git reset 230f211
 ```
 
-### Check
+## Example
+
+Before:
+
+```text
+A → B → C
+        ↑
+       HEAD
+```
+
+Run:
+
+```bash
+git reset 230f211 --mixed
+```
+
+After:
+
+```text
+A → B
+    ↑
+   HEAD
+```
+
+The changes from `C` are kept in the working directory but are **unstaged**.
+
+## Result
+
 ```bash
 git status
 ```
 
-You will normally see:
+Example:
+
 ```text
 Changes not staged for commit:
     modified: test.py
@@ -177,118 +366,287 @@ Changes not staged for commit:
 
 # 7. `git reset 230f211 --hard`
 
-### Command
+## Definition
+
+A hard reset moves `HEAD`, resets the staging area, and resets the working directory to the selected commit.
+
+**Local changes after that commit are discarded.**
+
+## Why Use?
+
+Use it when:
+
+* You are sure you do not need the changes.
+* You want your working directory to exactly match an older commit.
+* You want to completely remove local changes.
+
+## Command
+
 ```bash
 git reset 230f211 --hard
 ```
 
-### What it does
-- Moves `HEAD` to `230f211`.
-- Resets staging area.
-- Resets working directory to that commit.
-- **Discards local changes after that commit.**
+## Example
 
-### Important ⚠️
-`--hard` can permanently remove uncommitted work.
+Before:
 
-Use it carefully.
+```text
+A → B → C → D
+          ↑
+         HEAD
+```
 
-### Check
+Run:
+
+```bash
+git reset 230f211 --hard
+```
+
+After:
+
+```text
+A → B
+    ↑
+   HEAD
+```
+
+The files are also restored to the state of `230f211`.
+
+## Result
+
 ```bash
 git status
 ```
 
-Expected:
+Output:
+
 ```text
+On branch tod-fod
 nothing to commit, working tree clean
 ```
 
+### ⚠️ Important
+
+`--hard` can discard uncommitted work.
+
+Always check:
+
+```bash
+git status
+```
+
+before using it.
+
 ---
 
-# 8. Quick Difference
+# 8. Difference Between Revert and Reset
 
-| Command | HEAD | Staging Area | Working Directory |
-|---|---|---|---|
-| `git reset <commit>` | Moves | Reset | Keeps changes |
-| `git reset <commit> --soft` | Moves | Keeps changes staged | Keeps changes |
-| `git reset <commit> --mixed` | Moves | Unstages changes | Keeps changes |
-| `git reset <commit> --hard` | Moves | Reset | Discards changes |
-| `git revert <commit>` | New commit | Updated by revert | Updated by revert |
+| Command             | What happens to history?  | Changes                 | Best use                         |
+| ------------------- | ------------------------- | ----------------------- | -------------------------------- |
+| `git revert`        | Creates a new undo commit | Reversed                | Shared/pushed commits            |
+| `git reset --soft`  | Moves HEAD                | Changes remain staged   | Rework commits                   |
+| `git reset --mixed` | Moves HEAD                | Changes become unstaged | Rework files                     |
+| `git reset --hard`  | Moves HEAD                | Changes discarded       | Completely discard local changes |
 
 ---
 
-# 9. Easy Memory Trick
+# 9. Soft vs Mixed vs Hard
+
+The easiest way to remember:
 
 ```text
 SOFT
 HEAD moves
+    ↓
 Changes stay STAGED
+```
 
+```text
 MIXED
 HEAD moves
+    ↓
 Changes become UNSTAGED
+```
 
+```text
 HARD
 HEAD moves
+    ↓
 Changes are DISCARDED
-
-REVERT
-HEAD/history stays
-NEW commit UNDOES old commit
-
-BLAME
-Shows WHO changed WHICH LINE
 ```
 
 ---
 
-# 10. Commands From Practice
+# 10. Practical Example
 
-### Check history
+Suppose your history is:
+
+```text
+029ee6d → 814fa3e → 12ed3dd → 5bfa3b8 → 230f211 → d66098a
+                                                   ↑
+                                                  HEAD
+```
+
+You want to go back to:
+
+```text
+230f211
+```
+
+### Keep changes staged
+
+```bash
+git reset 230f211 --soft
+```
+
+Result:
+
+```text
+HEAD → 230f211
+Changes → STAGED
+```
+
+### Keep changes but unstage them
+
+```bash
+git reset 230f211 --mixed
+```
+
+Result:
+
+```text
+HEAD → 230f211
+Changes → UNSTAGED
+```
+
+### Delete the changes
+
+```bash
+git reset 230f211 --hard
+```
+
+Result:
+
+```text
+HEAD → 230f211
+Changes → DELETED
+```
+
+---
+
+# 11. Important Commands
+
+### Check current branch
+
+```bash
+git branch
+```
+
+### Check status
+
+```bash
+git status
+```
+
+### View commit history
+
 ```bash
 git log --oneline
 ```
 
-### Find who changed lines
+### See who changed each line
+
 ```bash
 git blame keys.txt
 ```
 
-### Safely undo a commit with a new commit
+### Safely undo a commit
+
 ```bash
 git revert c9c9faa
 ```
 
-### Mixed reset (default)
+### Mixed reset
+
 ```bash
 git reset 230f211
 ```
 
 ### Soft reset
+
 ```bash
 git reset 230f211 --soft
 ```
 
 ### Mixed reset explicitly
+
 ```bash
 git reset 230f211 --mixed
 ```
 
 ### Hard reset
+
 ```bash
 git reset 230f211 --hard
 ```
 
-### Check result
-```bash
-git status
-git log --oneline
+---
+
+# 12. One-Line Interview Definitions
+
+### `git blame`
+
+> Shows who last modified each line of a file.
+
+### `git revert`
+
+> Creates a new commit that reverses the changes of an existing commit.
+
+### `git reset`
+
+> Moves the current branch HEAD to another commit.
+
+### `git reset --soft`
+
+> Moves HEAD while keeping changes staged.
+
+### `git reset --mixed`
+
+> Moves HEAD while keeping changes unstaged.
+
+### `git reset --hard`
+
+> Moves HEAD and discards changes in the staging area and working directory.
+
+---
+
+# 13. Easy Memory Trick
+
+```text
+BLAME  → WHO changed the line?
+
+REVERT → UNDO using a NEW commit.
+
+RESET  → MOVE HEAD.
+
+SOFT   → Keep STAGED.
+
+MIXED  → Keep but UNSTAGED.
+
+HARD   → DELETE local changes.
 ```
 
-## Key Rule
+## Golden Rule
 
-**Revert = undo with a new commit.**
+```text
+Already pushed/shared commit?
+        ↓
+   Prefer REVERT
 
-**Reset = move the branch pointer (`HEAD`) backward/forward.**
+Local commit/history?
+        ↓
+     RESET can be used
+```
 
-**Blame = identify who last changed each line.**
+> ⚠️ Be especially careful with `git reset --hard` and `git push --force`, because they can remove or rewrite work that other people may depend on.
+
